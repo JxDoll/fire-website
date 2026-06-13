@@ -31,9 +31,14 @@ class CustomFooter extends StatelessWidget {
                       children: [
                         const Icon(Icons.local_fire_department, color: AppColors.primary, size: 32),
                         const SizedBox(width: 8),
-                        Text(
-                          'SAI INTERNATIONAL FIRE SERVICE',
-                          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: isDark ? Colors.white : AppColors.lightTextPrimary, letterSpacing: 1.5),
+                        Expanded(
+                          child: Text(
+                            'SAI INTERNATIONAL FIRE SERVICE',
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: true,
+                            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: isDark ? Colors.white : AppColors.lightTextPrimary, letterSpacing: 1.5),
+                          ),
                         ),
                       ],
                     ),

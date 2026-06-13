@@ -94,7 +94,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                             Text(
                               'Sai International Fire Service Control Center',
                               style: TextStyle(fontSize: isMobile ? 22 : 30, fontWeight: FontWeight.w900, color: isDark ? Colors.white : AppColors.lightTextPrimary),
-                              maxLines: isMobile ? 2 : 1,
+                              maxLines: isMobile ? 3 : 1,
                               overflow: isMobile ? TextOverflow.ellipsis : TextOverflow.visible,
                             ),
                           ],
@@ -147,7 +147,14 @@ class _AdminDashboardState extends State<AdminDashboard> {
                       const SizedBox(height: 40),
 
                       // 2. Navigation Tab Buttons
-                      Row(children: [_buildTabButton(0, 'Orders Dispatch Panel', Icons.local_shipping_outlined), const SizedBox(width: 16), _buildTabButton(1, 'Inventory Stock Manager', Icons.inventory_2_outlined)]),
+                      // Use horizontal scrolling on small screens to avoid RenderFlex overflow.
+                      isMobile
+                          ? SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              physics: const ClampingScrollPhysics(),
+                              child: Row(children: [_buildTabButton(0, 'Orders Dispatch Panel', Icons.local_shipping_outlined), const SizedBox(width: 16), _buildTabButton(1, 'Inventory Stock Manager', Icons.inventory_2_outlined)]),
+                            )
+                          : Row(children: [_buildTabButton(0, 'Orders Dispatch Panel', Icons.local_shipping_outlined), const SizedBox(width: 16), _buildTabButton(1, 'Inventory Stock Manager', Icons.inventory_2_outlined)]),
                       const SizedBox(height: 24),
 
                       // 3. Tab Contents
@@ -316,7 +323,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                 child: const Text(
                   'Active Extinguisher Inventory Catalog',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  maxLines: 2,
+                  maxLines: 4,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -328,7 +335,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                 ),
                 icon: const Icon(Icons.add, size: 16),
-                label: const Text('Add Cylinder Product', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                label: const Text('Add Product', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
                 onPressed: () {
                   // Prompt adding a mock product
                   final newProd = FireExtinguisher(
