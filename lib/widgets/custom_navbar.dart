@@ -35,31 +35,44 @@ class CustomNavbar extends StatelessWidget implements PreferredSizeWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // Logo & Brand
-            GestureDetector(
-              onTap: () => Navigator.pushReplacementNamed(context, '/'),
-              child: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(color: AppColors.primary.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(10)),
-                    child: const Icon(Icons.local_fire_department, color: AppColors.primary, size: 28),
-                  ),
-                  const SizedBox(width: 12),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'SAI INTERNATIONAL FIRE SERVICE',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900, color: isDark ? Colors.white : AppColors.lightTextPrimary, letterSpacing: 1.5),
+            Flexible(
+              child: GestureDetector(
+                onTap: () => Navigator.pushReplacementNamed(context, '/'),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(color: AppColors.primary.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(10)),
+                      child: const Icon(Icons.local_fire_department, color: AppColors.primary, size: 28),
+                    ),
+                    const SizedBox(width: 12),
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Flexible(
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'SAI INTERNATIONAL FIRE SERVICE',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900, color: isDark ? Colors.white : AppColors.lightTextPrimary, letterSpacing: 1.5),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'E-COMMERCE',
+                            style: TextStyle(fontSize: 9, fontWeight: FontWeight.w700, color: AppColors.primary, letterSpacing: 2),
+                          ),
+                        ],
                       ),
-                      Text(
-                        'E-COMMERCE',
-                        style: TextStyle(fontSize: 9, fontWeight: FontWeight.w700, color: AppColors.primary, letterSpacing: 2),
-                      ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
 

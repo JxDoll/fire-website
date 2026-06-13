@@ -24,7 +24,10 @@ class _AdminDashboardState extends State<AdminDashboard> {
   void initState() {
     super.initState();
     // Pre-populate mock orders for Admin dashboard realism
-    Provider.of<OrderProvider>(context, listen: false).populateMockOrders();
+    // Must be deferred to avoid notifying listeners during the first build.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<OrderProvider>(context, listen: false).populateMockOrders();
+    });
   }
 
   void _advanceOrderStatus(BuildContext context, OrderProvider provider, OrderModel order) {
@@ -77,21 +80,25 @@ class _AdminDashboardState extends State<AdminDashboard> {
                 child: Container(
                   constraints: const BoxConstraints(maxWidth: 1200),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'ADMIN SYSTEM PORTAL',
-                            style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: AppColors.primary, letterSpacing: 2),
-                          ),
-                          const SizedBox(height: 6),
-                          Text(
-                            'Firesafe Control Center',
-                            style: TextStyle(fontSize: isMobile ? 22 : 30, fontWeight: FontWeight.w900, color: isDark ? Colors.white : AppColors.lightTextPrimary),
-                          ),
-                        ],
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'ADMIN SYSTEM PORTAL',
+                              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: AppColors.primary, letterSpacing: 2),
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              'Sai International Fire Service Control Center',
+                              style: TextStyle(fontSize: isMobile ? 22 : 30, fontWeight: FontWeight.w900, color: isDark ? Colors.white : AppColors.lightTextPrimary),
+                              maxLines: isMobile ? 2 : 1,
+                              overflow: isMobile ? TextOverflow.ellipsis : TextOverflow.visible,
+                            ),
+                          ],
+                        ),
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
@@ -303,9 +310,17 @@ class _AdminDashboardState extends State<AdminDashboard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Active Extinguisher Inventory Catalog', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+              Expanded(
+                child: const Text(
+                  'Active Extinguisher Inventory Catalog',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              const SizedBox(width: 12),
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.success,

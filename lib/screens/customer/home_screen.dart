@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
             _buildTestimonialsSection(context),
 
             // Footer
-            const CustomFooter(),
+            SizedBox(width: double.infinity, child: const CustomFooter()),
           ],
         ),
       ),
@@ -97,7 +97,10 @@ class HomeScreen extends StatelessWidget {
                       style: TextStyle(fontSize: isMobile ? 14 : 18, color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary, height: 1.5),
                     ),
                     const SizedBox(height: 36),
-                    Row(
+                    Wrap(
+                      spacing: 16,
+                      runSpacing: 12,
+                      crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -120,7 +123,6 @@ class HomeScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        const SizedBox(width: 16),
                         OutlinedButton(
                           style: OutlinedButton.styleFrom(
                             foregroundColor: isDark ? Colors.white : AppColors.lightTextPrimary,

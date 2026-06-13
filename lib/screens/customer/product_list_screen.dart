@@ -44,7 +44,7 @@ class ProductListScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'FIRESAFE CATALOGUE',
+                        'SAI INTERNATIONAL FIRE SERVICE CATALOGUE',
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,

@@ -127,7 +127,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       children: [
         // Brand Name
         const Text(
-          'FIRESAFE CERTIFIED SAFETY',
+          'SAI INTERNATIONAL FIRE SERVICE CERTIFIED SAFETY',
           style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w800, fontSize: 12, letterSpacing: 2),
         ),
         const SizedBox(height: 12),
